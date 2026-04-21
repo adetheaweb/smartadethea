@@ -1,0 +1,69 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default Deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Functions
+    function isSignedIn() { return request.auth != null; }
+    function isVerified() { return isSignedIn() && request.auth.token.email_verified == true; }
+    function isAdmin() { return isVerified() && request.auth.token.email == "ishaqendang048@gmail.com"; }
+    function isValidId(id) { return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$'); }
+    function incoming() { return request.resource.data; }
+    function existing() { return resource.data; }
+
+    // Quiz Validation
+    function isValidQuiz(data) {
+      let requiredFields = ['id', 'title', 'teacherId', 'durationMinutes', 'questions', 'status', 'createdAt'];
+      return data.keys().hasAll(requiredFields)
+        && data.id is string && data.id.size() <= 128
+        && data.title is string && data.title.size() <= 500
+        && data.teacherId is string
+        && (data.durationMinutes is int || data.durationMinutes is float)
+        && data.questions is list && data.questions.size() <= 200
+        && data.status in ['draft', 'published', 'closed']
+        && (data.createdAt is int || data.createdAt is float)
+        && (!('description' in data) || data.description is string)
+        && (!('startTime' in data) || data.startTime == null || data.startTime is int || data.startTime is float)
+        && (!('endTime' in data) || data.endTime == null || data.endTime is int || data.endTime is float);
+    }
+
+    // Attempt Validation
+    function isValidAttempt(data) {
+      let requiredFields = ['id', 'quizId', 'studentId', 'studentName', 'answers', 'score', 'maxScore', 'startTime', 'status'];
+      return data.keys().hasAll(requiredFields)
+        && data.id is string && data.id.size() <= 128
+        && data.quizId is string && data.quizId.size() <= 128
+        && data.studentId is string
+        && data.studentName is string && data.studentName.size() <= 200
+        && data.answers is map
+        && data.score is number
+        && data.maxScore is number
+        && (data.startTime is int || data.startTime is float)
+        && data.status in ['in_progress', 'submitted']
+        && (!('endTime' in data) || data.endTime == null || data.endTime is int || data.endTime is float);
+    }
+
+    match /quizzes/{quizId} {
+      allow read: if true; // Public can see active quizzes to join
+      allow create: if isAdmin() && isValidQuiz(incoming()) && isValidId(quizId) && incoming().id == quizId;
+      allow update: if isAdmin() && isValidQuiz(incoming());
+      allow delete: if isAdmin();
+    }
+
+    match /attempts/{attemptId} {
+      // List/Get: Anyone can get a specific attempt (e.g. for results), 
+      // but let's restrict list to the student name or admin
+      allow read: if true; 
+      
+      allow create: if isValidAttempt(incoming()) && isValidId(attemptId) && incoming().id == attemptId;
+      
+      // Allow student to update their own attempt (e.g. when finishing)
+      allow update: if (incoming().studentName == existing().studentName && isValidAttempt(incoming()))
+                      || isAdmin();
+    }
+  }
+}
