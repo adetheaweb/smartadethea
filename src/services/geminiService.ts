@@ -3,7 +3,7 @@ import { Question } from "../types";
 
 const getApiKey = () => {
   try {
-    return import.meta.env.VITE_GEMINI_API_KEY || (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : undefined);
+    return (import.meta as any).env.VITE_GEMINI_API_KEY || (typeof process !== 'undefined' ? process.env.GEMINI_API_KEY : undefined);
   } catch (e) {
     return undefined;
   }

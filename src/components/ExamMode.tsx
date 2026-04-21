@@ -73,7 +73,7 @@ export function ExamMode({ quiz, studentName, onComplete }: ExamModeProps) {
       {/* Top Header */}
       <header className="h-16 bg-white border-b flex items-center justify-between px-8 shrink-0 z-10 shadow-sm leading-none">
         <div className="flex items-center gap-4">
-          <div className="w-8 h-8 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center font-bold text-slate-500 text-xs">
+          <div className="w-8 h-8 rounded-none bg-slate-100 border border-slate-200 flex items-center justify-center font-bold text-slate-500 text-xs">
             {studentName.charAt(0).toUpperCase()}
           </div>
           <div>
@@ -84,14 +84,14 @@ export function ExamMode({ quiz, studentName, onComplete }: ExamModeProps) {
 
         <div className="flex items-center gap-6">
           <div className={cn(
-            "flex items-center px-4 py-2 rounded-md font-mono font-black text-xl border",
+            "flex items-center px-4 py-2 rounded-none font-mono font-black text-xl border",
             timeLeft < 300 ? "bg-red-50 border-red-200 text-red-600 animate-pulse" : "bg-slate-50 border-slate-200 text-slate-700"
           )}>
             <Clock className="w-5 h-5 mr-3" />
             {formatTime(timeLeft)}
           </div>
           {isConfirming ? (
-            <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 p-1 rounded-lg">
+            <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 p-1 rounded-none">
               <span className="text-[9px] font-black text-amber-700 uppercase px-2">Yakin?</span>
               <Button variant="danger" size="sm" onClick={handleFinish} className="h-8 text-[10px] font-black">YA, KUMPULKAN</Button>
               <Button variant="ghost" size="sm" onClick={() => setIsConfirming(false)} className="h-8 text-[10px] font-black text-slate-400">BATAL</Button>
@@ -125,14 +125,14 @@ export function ExamMode({ quiz, studentName, onComplete }: ExamModeProps) {
                     key={i}
                     onClick={() => setAnswers({ ...answers, [currentQ.id]: opt })}
                     className={cn(
-                      "w-full text-left px-5 py-4 rounded-md border-2 transition-all duration-150 flex items-center group",
+                      "w-full text-left px-5 py-4 rounded-none border-2 transition-all duration-150 flex items-center group",
                       answers[currentQ.id] === opt 
                         ? "border-indigo-600 bg-indigo-50 shadow-sm" 
                         : "border-slate-100 bg-slate-50 hover:border-slate-300 hover:bg-slate-100 shadow-xs"
                     )}
                   >
                     <span className={cn(
-                      "w-7 h-7 rounded flex items-center justify-center font-black text-xs mr-4 border-2 transition-colors",
+                      "w-7 h-7 rounded-none flex items-center justify-center font-black text-xs mr-4 border-2 transition-colors",
                       answers[currentQ.id] === opt 
                         ? "bg-indigo-600 border-indigo-600 text-white" 
                         : "bg-white border-slate-200 text-slate-400"
@@ -163,7 +163,7 @@ export function ExamMode({ quiz, studentName, onComplete }: ExamModeProps) {
               <div className="flex gap-1.5">
                 {quiz.questions.map((_, i) => (
                   <div key={i} className={cn(
-                    "h-1 w-6 rounded-full transition-all",
+                    "h-1 w-6 transition-all",
                     i === currentIdx ? "bg-indigo-600" : answers[quiz.questions[i].id] ? "bg-emerald-500" : "bg-slate-200"
                   )} />
                 ))}
@@ -184,7 +184,7 @@ export function ExamMode({ quiz, studentName, onComplete }: ExamModeProps) {
 
         {/* Right: Navigation Grid */}
         <section className="col-span-4 bg-slate-50 overflow-y-auto p-8 space-y-8">
-          <div className="bg-white border border-slate-200 rounded-lg shadow-sm">
+          <div className="bg-white border border-slate-200 rounded-none shadow-sm">
             <div className="p-4 border-b">
               <h3 className="text-[10px] font-black text-slate-400 uppercase tracking-widest flex items-center">
                 <ClipboardList className="w-3.5 h-3.5 mr-2" />
@@ -198,7 +198,7 @@ export function ExamMode({ quiz, studentName, onComplete }: ExamModeProps) {
                     key={q.id}
                     onClick={() => setCurrentIdx(i)}
                     className={cn(
-                      "h-9 w-full rounded flex items-center justify-center text-[10px] font-black transition-all border-2",
+                      "h-9 w-full rounded-none flex items-center justify-center text-[10px] font-black transition-all border-2",
                       i === currentIdx 
                         ? "border-indigo-600 bg-white text-indigo-600 ring-4 ring-indigo-50" 
                         : answers[q.id] 
@@ -213,9 +213,9 @@ export function ExamMode({ quiz, studentName, onComplete }: ExamModeProps) {
             </div>
           </div>
 
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-5">
+          <div className="bg-amber-50 border border-amber-200 rounded-none p-5">
             <div className="flex items-start gap-4">
-              <div className="p-2 bg-white rounded-lg border border-amber-200 shadow-xs">
+              <div className="p-2 bg-white rounded-none border border-amber-200 shadow-xs">
                 <AlertCircle className="w-4 h-4 text-amber-600" />
               </div>
               <div>

@@ -38,9 +38,9 @@ export function TeacherDashboard({ quizzes, attempts, onCreateNew, onLogout }: T
         return (
           <div className="space-y-8">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-white p-6 rounded-lg border border-slate-200 shadow-sm transition-all hover:shadow-md">
+              <div className="bg-white p-6 rounded-none border border-slate-200 shadow-sm transition-all hover:shadow-md">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-2 bg-indigo-50 rounded-md">
+                  <div className="p-2 bg-indigo-50 rounded-none">
                     <ClipboardList className="h-6 w-6 text-indigo-500" />
                   </div>
                   <Badge variant="success">Aktif</Badge>
@@ -49,9 +49,9 @@ export function TeacherDashboard({ quizzes, attempts, onCreateNew, onLogout }: T
                 <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Total Paket Ujian</div>
               </div>
               
-              <div className="bg-white p-6 rounded-lg border border-slate-200 shadow-sm transition-all hover:shadow-md">
+              <div className="bg-white p-6 rounded-none border border-slate-200 shadow-sm transition-all hover:shadow-md">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-2 bg-emerald-50 rounded-md">
+                  <div className="p-2 bg-emerald-50 rounded-none">
                     <Users className="h-6 w-6 text-emerald-500" />
                   </div>
                 </div>
@@ -59,9 +59,9 @@ export function TeacherDashboard({ quizzes, attempts, onCreateNew, onLogout }: T
                 <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mt-1">Siswa Terdaftar</div>
               </div>
 
-              <div className="bg-white p-6 rounded-lg border border-slate-200 shadow-sm transition-all hover:shadow-md">
+              <div className="bg-white p-6 rounded-none border border-slate-200 shadow-sm transition-all hover:shadow-md">
                 <div className="flex items-center justify-between mb-4">
-                  <div className="p-2 bg-amber-50 rounded-md">
+                  <div className="p-2 bg-amber-50 rounded-none">
                     <GraduationCap className="h-6 w-6 text-amber-500" />
                   </div>
                 </div>
@@ -245,7 +245,7 @@ export function TeacherDashboard({ quizzes, attempts, onCreateNew, onLogout }: T
       {/* Sidebar Navigation */}
       <aside className="w-64 bg-slate-900 text-white flex flex-col shrink-0">
         <div className="p-8 pb-10 flex items-center gap-4">
-          <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center font-black text-xl shadow-lg rotate-3">S</div>
+          <div className="w-10 h-10 bg-indigo-600 rounded-none flex items-center justify-center font-black text-xl shadow-lg rotate-3">S</div>
           <div>
             <span className="font-black tracking-tighter text-2xl uppercase block leading-none">Smartadethea</span>
             <span className="text-[8px] font-black text-white/30 uppercase tracking-[0.3em]">Administrator</span>

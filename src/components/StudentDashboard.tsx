@@ -24,12 +24,12 @@ export function StudentDashboard({ quizzes, attempts, onStartQuiz, onLogout, stu
       {/* Sidebar Navigation */}
       <aside className="w-60 bg-slate-900 text-white flex flex-col shrink-0">
         <div className="p-6 flex items-center gap-3">
-          <div className="w-8 h-8 bg-indigo-500 rounded flex items-center justify-center font-bold text-lg">S</div>
+          <div className="w-8 h-8 bg-indigo-500 rounded-none flex items-center justify-center font-bold text-lg">S</div>
           <span className="font-bold tracking-tight text-xl uppercase">Smartadethea</span>
         </div>
         <nav className="flex-1 px-4 space-y-1">
           <div className="p-2 text-[10px] font-bold text-slate-500 uppercase tracking-widest">Siswa</div>
-          <a href="#" className="flex items-center gap-3 px-3 py-2 bg-slate-800 rounded-md text-sm border border-slate-700/50">
+          <a href="#" className="flex items-center gap-3 px-3 py-2 bg-slate-800 rounded-none text-sm border border-slate-700/50">
             <Play className="h-4 w-4 text-indigo-400" />
             <span>Cari Ujian</span>
           </a>
@@ -40,7 +40,7 @@ export function StudentDashboard({ quizzes, attempts, onStartQuiz, onLogout, stu
         </nav>
         <div className="p-4 border-t border-slate-800">
           <div className="flex items-center gap-3 mb-4 px-2">
-            <div className="w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center font-bold text-white text-xs">
+            <div className="w-8 h-8 rounded-none bg-indigo-500 flex items-center justify-center font-bold text-white text-xs">
               {studentName.charAt(0).toUpperCase()}
             </div>
             <div className="overflow-hidden">

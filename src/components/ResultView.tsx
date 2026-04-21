@@ -61,7 +61,7 @@ export function ResultView({ attempt, onRetry, onHome }: ResultViewProps) {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ type: "spring", damping: 12 }}
-                className={`w-24 h-24 rounded-2xl bg-white shadow-xl flex items-center justify-center mb-6 z-10`}
+                className={`w-24 h-24 rounded-none bg-white shadow-xl flex items-center justify-center mb-6 z-10`}
               >
                 {isPerfect ? (
                   <Trophy className="w-12 h-12 text-amber-500" />
@@ -86,8 +86,8 @@ export function ResultView({ attempt, onRetry, onHome }: ResultViewProps) {
 
             {/* Respectful Message */}
             <div className="px-8 pb-10">
-              <div className="p-6 bg-slate-50 rounded-xl border border-slate-100 text-center relative">
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-4 border border-slate-100 rounded-full text-[8px] font-black text-slate-400 uppercase tracking-widest leading-none py-2">Pesan Untuk Anda</div>
+              <div className="p-6 bg-slate-50 rounded-none border border-slate-100 text-center relative">
+                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-white px-4 border border-slate-100 rounded-none text-[8px] font-black text-slate-400 uppercase tracking-widest leading-none py-2">Pesan Untuk Anda</div>
                 <p className="text-xs leading-relaxed font-bold text-slate-600 uppercase tracking-tight line-clamp-4">
                   "{msg.desc}"
                 </p>
